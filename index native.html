@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Aravind Koya — Senior React Native Developer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Senior React Native Developer specializing in React Native, iOS, Android, Kotlin, Swift, and secure enterprise mobile applications."
+  />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --card: #111827;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.1);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --radius-lg: 18px;
+      --radius-full: 999px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.8);
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #1f2937 0, #050816 45%, #020617 100%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.96),
+        rgba(15, 23, 42, 0.75),
+        transparent
+      );
+      border-bottom: 1px solid rgba(31, 41, 55, 0.7);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .brand-main {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.92rem;
+    }
+
+    .brand-pill {
+      font-size: 0.75rem;
+      padding: 0.15rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: var(--muted);
+      padding-bottom: 0.1rem;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 0;
+      background: linear-gradient(to right, var(--accent), #a855f7);
+      border-radius: 999px;
+      transition: width 0.2s ease-out;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .mobile-nav-toggle {
+      display: none;
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 999px;
+      padding: 0.35rem 0.7rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .mobile-nav-toggle span {
+      font-size: 1.2rem;
+      margin-right: 0.15rem;
+    }
+
+    .content {
+      flex: 1;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.5rem clamp(1.25rem, 4vw, 1.75rem) 3rem;
+    }
+
+    /* HERO */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.25fr);
+      gap: 2rem;
+      align-items: center;
+      padding-top: 2rem;
+      padding-bottom: 2.5rem;
+    }
+
+    .hero-heading-kicker {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-heading-kicker::before {
+      content: "";
+      width: 48px;
+      height: 1px;
+      background: linear-gradient(to right, var(--accent), transparent);
+      opacity: 0.7;
+    }
+
+    .hero-title {
+      font-size: clamp(2.25rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .hero-title span {
+      display: block;
+      background: linear-gradient(to right, #e5e7eb, #38bdf8, #a855f7);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      margin-top: 0.8rem;
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 36rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1rem;
+    }
+
+    .hero-badge {
+      font-size: 0.75rem;
+      padding: 0.28rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.14), rgba(15, 23, 42, 0.9));
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      margin-top: 1.6rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 0.6rem 1.3rem;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.12s ease-out, box-shadow 0.12s ease-out,
+        background 0.12s ease-out, border-color 0.12s ease-out;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #a855f7);
+      color: #0b1020;
+      font-weight: 600;
+      box-shadow: 0 16px 35px rgba(56, 189, 248, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 20px 45px rgba(56, 189, 248, 0.4);
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.9);
+      border-color: rgba(148, 163, 184, 0.4);
+      color: var(--muted);
+    }
+
+    .btn-ghost:hover {
+      transform: translateY(-1px);
+      border-color: rgba(248, 250, 252, 0.6);
+      color: var(--text);
+    }
+
+    .btn-primary span.icon,
+    .btn-ghost span.icon {
+      font-size: 1rem;
+    }
+
+    .hero-contact {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-contact a {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .hero-right {
+      position: relative;
+    }
+
+    .hero-card {
+      border-radius: 24px;
+      padding: 1.6rem 1.4rem;
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), rgba(15, 23, 42, 0.95));
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .hero-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 999px;
+      border: 2px solid var(--accent-soft);
+      background: radial-gradient(circle at 30% 20%, #38bdf8, #1d4ed8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: white;
+      font-size: 1.1rem;
+    }
+
+    .hero-card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .hero-card-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-card-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.5rem;
+    }
+
+    .hero-card-badge {
+      font-size: 0.7rem;
+      padding: 0.18rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--muted);
+    }
+
+    .hero-card-section-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+    }
+
+    .hero-card-list {
+      list-style: none;
+      margin-top: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-card-list li {
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    .hero-pill {
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--accent);
+      font-size: 0.7rem;
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding-top: 2rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .section-kicker {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+    }
+
+    .section-subtitle {
+      font-size: 0.88rem;
+      color: var(--muted);
+      max-width: 32rem;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 1.7rem;
+    }
+
+    .card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 1.2rem 1.3rem;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.7);
+    }
+
+    .card-muted {
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.06), rgba(15, 23, 42, 0.95));
+    }
+
+    .para {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .para strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* SKILLS */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1rem;
+    }
+
+    .skills-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .skills-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 0.22rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    /* EXPERIENCE */
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      border-left: 1px solid rgba(55, 65, 81, 0.9);
+      padding-left: 1.2rem;
+      margin-top: 0.4rem;
+    }
+
+    .exp-item {
+      position: relative;
+      padding: 1rem 1rem 1rem 1rem;
+      border-radius: var(--radius-lg);
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.8);
+    }
+
+    .exp-item::before {
+      content: "";
+      position: absolute;
+      left: -1.55rem;
+      top: 1.2rem;
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, var(--accent), #1d4ed8);
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2);
+    }
+
+    .exp-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .exp-role {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .exp-company {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .exp-meta {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .exp-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.45rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .exp-badge {
+      font-size: 0.7rem;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    .exp-list {
+      margin-top: 0.35rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding-left: 1.05rem;
+    }
+
+    .exp-list li {
+      margin-bottom: 0.22rem;
+    }
+
+    /* PROJECTS */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .project-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .project-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .project-tech {
+      margin-top: 0.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+
+    .project-tech span {
+      font-size: 0.7rem;
+      padding: 0.18rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: var(--muted);
+    }
+
+    /* CONTACT */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2.3fr) minmax(0, 2fr);
+      gap: 1.5rem;
+    }
+
+    .contact-list {
+      list-style: none;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .contact-list li {
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-list span.label {
+      color: var(--text);
+      font-weight: 500;
+      margin-right: 0.3rem;
+    }
+
+    .contact-cta {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+
+    .contact-cta strong {
+      color: var(--accent);
+    }
+
+    footer {
+      padding: 1.2rem 1.5rem 2rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-right {
+        order: -1;
+      }
+
+      .two-col {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-inner {
+        padding-inline: 1rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        right: 1rem;
+        top: 3rem;
+        background: rgba(15, 23, 42, 0.97);
+        border-radius: 18px;
+        border: 1px solid rgba(31, 41, 55, 0.9);
+        padding: 0.7rem 0.85rem;
+        box-shadow: 0 16px 32px rgba(15, 23, 42, 0.9);
+      }
+
+      .mobile-nav-toggle {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      main {
+        padding-inline: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- NAVBAR -->
+    <header class="nav">
+      <div class="nav-inner">
+        <div class="brand">
+          <span class="brand-main">ARAVIND KOYA</span>
+          <span class="brand-pill">Senior React Native Developer</span>
+        </div>
+        <nav>
+          <button class="mobile-nav-toggle" id="mobileNavToggle">
+            <span>☰</span> Menu
+          </button>
+          <div class="nav-links" id="navLinks">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <div class="content">
+      <main>
+        <!-- HERO -->
+        <section class="hero" id="home">
+          <div class="hero-left">
+            <div class="hero-heading-kicker">React Native • iOS • Android • Mobile Engineering</div>
+            <h1 class="hero-title">
+              Building secure,<br />
+              <span>enterprise-grade web experiences.</span>
+            </h1>
+            <p class="hero-subtitle">
+              Lead Mobile &amp; Frontend Developer with 10+ years of experience building secure,
+              scalable, and high-performance applications across iOS, Android, React Native,
+              banking, healthcare, finance, telecom, and public-sector environments.
+            </p>
+
+            <div class="hero-badges">
+              <span class="hero-badge">React Native</span>
+              <span class="hero-badge">iOS / Swift / SwiftUI</span>
+              <span class="hero-badge">Android / Kotlin</span>
+              <span class="hero-badge">TypeScript</span>
+              <span class="hero-badge">Figma / Design Systems</span>
+              <span class="hero-badge">Redux Toolkit / RTK Query</span>
+              <span class="hero-badge">GraphQL / REST</span>
+              <span class="hero-badge">Fastlane / CI/CD</span>
+            </div>
+
+            <div class="hero-actions">
+              <a href="#projects" class="btn-primary">
+                <span class="icon">⚡</span>
+                View Highlight Projects
+              </a>
+              <a href="#experience" class="btn-ghost">
+                <span class="icon">👨‍💻</span>
+                See Experience Timeline
+              </a>
+            </div>
+
+            <p class="hero-contact">
+              Available for C2C/Senior Frontend roles. Reach me at
+              <a href="mailto:aravindchowdarykoya7@gmail.com">aravindchowdarykoya7@gmail.com</a>
+              or call <strong>+1 (316) 512-7726</strong>.
+            </p>
+          </div>
+
+          <div class="hero-right">
+            <div class="hero-card">
+              <div class="hero-card-header">
+                <div class="avatar">AK</div>
+                <div>
+                  <div class="hero-card-title">
+                    Lead Mobile &amp; React Native Engineer
+                  </div>
+                  <div class="hero-card-meta">
+                    React Native • iOS • Android • Secure Mobile
+                  </div>
+                  <div class="hero-card-badges">
+                    <span class="hero-card-badge">10+ years experience</span>
+                    <span class="hero-card-badge">USA (CST)</span>
+                    <span class="hero-card-badge">Agile / Scrum</span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div class="hero-card-section-title">What I focus on</div>
+                <ul class="hero-card-list">
+                  <li>Cross-platform mobile architecture with React Native.</li>
+                  <li>Native iOS/Android integrations with Swift &amp; Kotlin.</li>
+                  <li>Secure authentication, biometrics, Keychain &amp; Keystore.</li>
+                  <li>Deep linking, WebView bridges, performance, and CI/CD.</li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="hero-card-section-title">Recent domains</div>
+                <ul class="hero-card-list">
+                  <li>Credit monitoring &amp; personal finance (Credit Karma).</li>
+                  <li>Healthcare mobile platform (Optum).</li>
+                  <li>Wealth management mobile app (T. Rowe Price).</li>
+                  <li>Telecom field-service mobile solution (State of New York).</li>
+                </ul>
+              </div>
+
+              <div class="hero-card-footer">
+                <span>Open to senior &amp; lead frontend roles.</span>
+                <span class="hero-pill">React Native / iOS / Android</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">ABOUT</div>
+              <h2 class="section-title">A mobile engineer for secure, regulated platforms.</h2>
+            </div>
+          </div>
+
+          <div class="two-col">
+            <div class="card card-muted">
+              <p class="para">
+                I specialize in building <strong>secure, scalable, and high-performance mobile applications</strong>
+                using React Native, Swift, SwiftUI, Kotlin, and TypeScript. My work includes
+                authentication, onboarding, account recovery, deep linking, WebView bridges,
+                biometrics, secure storage, push notifications, offline-first capabilities,
+                and native module integrations.
+              </p>
+              <p class="para" style="margin-top:0.6rem;">
+                I translate <strong>Figma wireframes and high-fidelity designs</strong> into reusable,
+                responsive mobile UI components and design-system patterns while maintaining
+                accessibility, consistent interaction behavior, and platform-specific UX across
+                iOS and Android.
+              </p>
+            </div>
+
+            <div class="card">
+              <p class="para">
+                I’ve delivered mobile products across <strong>banking, finance, healthcare, telecom,
+                and public-sector domains</strong>, integrating REST, GraphQL, Firebase, OAuth2/JWT,
+                OKTA, Cognito, Keychain/Keystore, and enterprise device-management solutions such as
+                Microsoft Intune.
+              </p>
+              <p class="para" style="margin-top:0.6rem;">
+                I also focus on performance and release engineering with Hermes, FlatList/FlashList,
+                Android Profiler, Instruments, Fastlane, GitHub Actions, Jenkins, Detox, Jest,
+                Firebase Test Lab, TestFlight, and Google Play delivery workflows.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">SKILLS</div>
+              <h2 class="section-title">Mobile technologies I use to ship reliable apps.</h2>
+            </div>
+            <p class="section-subtitle">
+              Cross-platform and native mobile engineering, design, testing, security, cloud, and delivery tooling.
+            </p>
+          </div>
+
+          <div class="skills-grid">
+            <div class="card card-muted">
+              <div class="skills-title">Mobile &amp; Native</div>
+              <div class="skills-tags">
+                <span class="tag">React Native</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Swift</span>
+                <span class="tag">SwiftUI</span>
+                <span class="tag">UIKit</span>
+                <span class="tag">Kotlin</span>
+                <span class="tag">Android SDK</span>
+                <span class="tag">iOS SDK</span>
+                <span class="tag">React Navigation</span>
+                <span class="tag">Redux Toolkit</span>
+                <span class="tag">RTK Query</span>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="skills-title">UI/UX &amp; Figma</div>
+              <div class="skills-tags">
+                <span class="tag">Figma</span>
+                <span class="tag">Wireframes</span>
+                <span class="tag">Interactive Prototypes</span>
+                <span class="tag">Design Systems</span>
+                <span class="tag">Reusable UI Components</span>
+                <span class="tag">Responsive / Adaptive Layouts</span>
+                <span class="tag">WCAG 2.1</span>
+                <span class="tag">Accessibility</span>
+                <span class="tag">Storybook</span>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="skills-title">Security, APIs &amp; Integrations</div>
+              <div class="skills-tags">
+                <span class="tag">REST APIs</span>
+                <span class="tag">GraphQL</span>
+                <span class="tag">OAuth2 / JWT</span>
+                <span class="tag">MFA / Biometrics</span>
+                <span class="tag">iOS Keychain</span>
+                <span class="tag">Android Keystore</span>
+                <span class="tag">Deep Linking</span>
+                <span class="tag">WebView / WKWebView</span>
+                <span class="tag">Firebase / APNs</span>
+                <span class="tag">OKTA / Cognito</span>
+                <span class="tag">Microsoft Intune</span>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="skills-title">Testing, Performance &amp; DevOps</div>
+              <div class="skills-tags">
+                <span class="tag">Jest</span>
+                <span class="tag">Detox</span>
+                <span class="tag">React Native Testing Library</span>
+                <span class="tag">XCTest</span>
+                <span class="tag">Espresso</span>
+                <span class="tag">Android Profiler</span>
+                <span class="tag">Instruments</span>
+                <span class="tag">Hermes</span>
+                <span class="tag">Fastlane</span>
+                <span class="tag">GitHub Actions</span>
+                <span class="tag">Jenkins</span>
+                <span class="tag">Firebase Test Lab</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section id="experience">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">EXPERIENCE</div>
+              <h2 class="section-title">Delivering secure mobile apps across regulated industries.</h2>
+            </div>
+            <p class="section-subtitle">
+              React Native, native iOS/Android engineering, Figma implementation, security, and mobile delivery.
+            </p>
+          </div>
+
+          <div class="timeline">
+            <article class="exp-item">
+              <div class="exp-header">
+                <div>
+                  <div class="exp-role">Sr Software Engineer (iOS / Android / React Native)</div>
+                  <div class="exp-company">Credit Karma — Financial Domain</div>
+                </div>
+                <div class="exp-meta">Jan 2026 – Present • Credit Monitoring &amp; Personal Finance</div>
+              </div>
+              <div class="exp-badges">
+                <span class="exp-badge">React Native</span>
+                <span class="exp-badge">Kotlin</span>
+                <span class="exp-badge">Swift / SwiftUI</span>
+                <span class="exp-badge">Figma</span>
+                <span class="exp-badge">Deep Linking</span>
+                <span class="exp-badge">WebView / WKWebView</span>
+                <span class="exp-badge">OAuth2 / JWT / MFA</span>
+              </div>
+              <ul class="exp-list">
+                <li>Developed secure mobile experiences for credit monitoring, onboarding, registration, account recovery, and financial services across iOS and Android.</li>
+                <li>Translated Figma designs and UX specifications into reusable React Native and native mobile components with consistent spacing, interaction states, accessibility, and platform-specific behavior.</li>
+                <li>Implemented Chrome Custom Tabs, SFSafariViewController, Android App Links, iOS Universal Links, WebView, and WKWebView bridges for secure web-to-app authentication flows.</li>
+                <li>Built biometric authentication, secure Keychain/Keystore storage, REST/GraphQL integrations, push notifications, and CI/CD pipelines using Jenkins, GitHub Actions, and Fastlane.</li>
+              </ul>
+            </article>
+
+            <article class="exp-item">
+              <div class="exp-header">
+                <div>
+                  <div class="exp-role">Sr. Mobile Developer (iOS / Android / React Native)</div>
+                  <div class="exp-company">Optum — Healthcare</div>
+                </div>
+                <div class="exp-meta">May 2024 – Dec 2025 • Claims &amp; Patient Engagement</div>
+              </div>
+              <div class="exp-badges">
+                <span class="exp-badge">React Native</span>
+                <span class="exp-badge">Swift / Kotlin</span>
+                <span class="exp-badge">Figma</span>
+                <span class="exp-badge">Intune</span>
+                <span class="exp-badge">GraphQL</span>
+                <span class="exp-badge">HIPAA / WCAG</span>
+              </div>
+              <ul class="exp-list">
+                <li>Led development of a patient-facing React Native app for appointments, medical records, prescriptions, and secure healthcare workflows.</li>
+                <li>Worked with design and accessibility teams to turn Figma-driven mobile experiences into reusable, accessible UI supporting dynamic text, screen readers, and high-contrast modes.</li>
+                <li>Integrated native Swift and Kotlin modules for biometrics, camera access, secure storage, offline data, and device-level functionality.</li>
+                <li>Improved app stability and delivery using Hermes, Android Profiler, Sentry, Firebase, GitHub Actions, Fastlane, Detox, and Jest.</li>
+              </ul>
+            </article>
+
+            <article class="exp-item">
+              <div class="exp-header">
+                <div>
+                  <div class="exp-role">Sr. React Native Developer</div>
+                  <div class="exp-company">T. Rowe Price — Financial Services</div>
+                </div>
+                <div class="exp-meta">Jul 2023 – Apr 2024 • Wealth Management Mobile App</div>
+              </div>
+              <div class="exp-badges">
+                <span class="exp-badge">React Native</span>
+                <span class="exp-badge">SwiftUI / Kotlin</span>
+                <span class="exp-badge">Figma</span>
+                <span class="exp-badge">Redux Toolkit</span>
+                <span class="exp-badge">GraphQL / REST</span>
+                <span class="exp-badge">PCI-DSS / SOC 2</span>
+              </div>
+              <ul class="exp-list">
+                <li>Directed development of a secure cross-platform wealth-management app delivering portfolio access, transactions, and real-time market insights.</li>
+                <li>Converted Figma wireframes, high-fidelity screens, and interaction specifications into reusable React Native components and adaptive iOS/Android layouts.</li>
+                <li>Bridged React Native with Swift/SwiftUI and Kotlin modules for biometrics, secure storage, camera-based document capture, and platform-specific experiences.</li>
+                <li>Optimized performance with Hermes and list virtualization while automating releases through GitHub Actions, Fastlane, and EAS builds.</li>
+              </ul>
+            </article>
+
+            <article class="exp-item">
+              <div class="exp-header">
+                <div>
+                  <div class="exp-role">Sr. React Native Developer</div>
+                  <div class="exp-company">State of New York</div>
+                </div>
+                <div class="exp-meta">Apr 2021 – Jun 2023 • Telecom Field Service &amp; Network Management</div>
+              </div>
+              <div class="exp-badges">
+                <span class="exp-badge">React Native</span>
+                <span class="exp-badge">TypeScript</span>
+                <span class="exp-badge">Swift / Kotlin</span>
+                <span class="exp-badge">Figma</span>
+                <span class="exp-badge">Offline-first</span>
+                <span class="exp-badge">WCAG / ADA</span>
+              </div>
+              <ul class="exp-list">
+                <li>Delivered a secure field-service and network-monitoring mobile solution using React Native, Redux Toolkit, TypeScript, Swift, and Kotlin.</li>
+                <li>Translated Figma designs into adaptive mobile screens, reusable UI components, forms, charts, maps, and field-service workflows across device sizes and orientations.</li>
+                <li>Implemented offline-first synchronization, push notifications, biometrics, Keychain/Keystore, GraphQL/REST integrations, and real-time network-status experiences.</li>
+                <li>Automated builds with GitHub Actions, Fastlane, and Firebase App Distribution while maintaining WCAG/ADA accessibility and enterprise security.</li>
+              </ul>
+            </article>
+
+            <article class="exp-item">
+              <div class="exp-header">
+                <div>
+                  <div class="exp-role">Mobile Software Engineer</div>
+                  <div class="exp-company">Credit One Bank — Financial Services</div>
+                </div>
+                <div class="exp-meta">Aug 2019 – Mar 2021 • Credit Card Mobile Platform</div>
+              </div>
+              <div class="exp-badges">
+                <span class="exp-badge">React Native</span>
+                <span class="exp-badge">TypeScript</span>
+                <span class="exp-badge">Figma</span>
+                <span class="exp-badge">GraphQL / REST</span>
+                <span class="exp-badge">Firebase</span>
+                <span class="exp-badge">PCI-DSS</span>
+              </div>
+              <ul class="exp-list">
+                <li>Built secure mobile banking experiences for credit card management, transaction history, statements, payments, alerts, and customer self-service.</li>
+                <li>Partnered with UI/UX designers to convert Figma wireframes into pixel-accurate, WCAG-compliant React Native banking interfaces across iOS and Android.</li>
+                <li>Implemented biometric login, encrypted storage, certificate pinning, Firebase push notifications, native module integrations, and offline capabilities.</li>
+                <li>Maintained quality and release pipelines using Jest, Detox, React Native Testing Library, Jenkins, Fastlane, and Agile delivery practices.</li>
+              </ul>
+            </article>
+
+            <article class="exp-item">
+              <div class="exp-header">
+                <div>
+                  <div class="exp-role">Full Stack / Frontend Engineer</div>
+                  <div class="exp-company">Phenom People &amp; Avaya — Hyderabad, India</div>
+                </div>
+                <div class="exp-meta">2014 – 2019 • Mobile &amp; Enterprise Applications</div>
+              </div>
+              <div class="exp-badges">
+                <span class="exp-badge">React Native</span>
+                <span class="exp-badge">AngularJS</span>
+                <span class="exp-badge">Figma</span>
+                <span class="exp-badge">REST APIs</span>
+                <span class="exp-badge">Git</span>
+              </div>
+              <ul class="exp-list">
+                <li>Developed responsive cross-platform mobile and web features using React Native, AngularJS, JavaScript, HTML5, and CSS3.</li>
+                <li>Built reusable mobile UI components and implemented pixel-accurate screens from Figma specifications.</li>
+                <li>Integrated REST/GraphQL APIs, authentication, native device features, testing, and deployment workflows across iOS and Android.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">PROJECT HIGHLIGHTS</div>
+              <h2 class="section-title">A snapshot of my mobile engineering work.</h2>
+            </div>
+            <p class="section-subtitle">
+              Secure React Native applications with native iOS/Android integrations, Figma-driven UI, and enterprise mobile delivery.
+            </p>
+          </div>
+
+          <div class="projects-grid">
+            <article class="card card-muted">
+              <h3 class="project-title">Credit Monitoring &amp; Personal Finance Mobile Platform (Credit Karma)</h3>
+              <p class="project-meta">Secure onboarding, account recovery, authentication, deep-linking, and financial mobile journeys.</p>
+              <p class="para" style="font-size:0.84rem;">
+                Built React Native and native iOS/Android features, translated Figma designs into reusable UI,
+                and implemented secure Custom Tabs, SFSafariViewController, WebView bridges, biometrics,
+                Keychain/Keystore, GraphQL/REST, and deep linking.
+              </p>
+              <div class="project-tech">
+                <span>React Native</span><span>Swift</span><span>Kotlin</span><span>Figma</span
+                ><span>Deep Linking</span><span>OAuth2 / JWT</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <h3 class="project-title">Healthcare Claims &amp; Patient Engagement App (Optum)</h3>
+              <p class="project-meta">HIPAA-compliant mobile application for appointments, records, prescriptions, and patient services.</p>
+              <p class="para" style="font-size:0.84rem;">
+                Led React Native delivery with native Swift/Kotlin modules, Intune, offline support,
+                Firebase, GraphQL, accessibility, and automated releases using GitHub Actions and Fastlane.
+              </p>
+              <div class="project-tech">
+                <span>React Native</span><span>Swift / Kotlin</span><span>Figma</span
+                ><span>Intune</span><span>GraphQL</span><span>HIPAA</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <h3 class="project-title">Wealth Management Mobile App (T. Rowe Price)</h3>
+              <p class="project-meta">Cross-platform financial application for portfolios, transactions, and market insights.</p>
+              <p class="para" style="font-size:0.84rem;">
+                Built secure React Native architecture, translated Figma designs into reusable mobile UI,
+                integrated Swift/Kotlin native modules, and optimized performance using Hermes and modern mobile tooling.
+              </p>
+              <div class="project-tech">
+                <span>React Native</span><span>Figma</span><span>SwiftUI</span
+                ><span>Kotlin</span><span>Redux Toolkit</span><span>Fastlane</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">CONTACT</div>
+              <h2 class="section-title">Let’s talk about your next frontend build.</h2>
+            </div>
+            <p class="section-subtitle">
+              Whether it’s modernizing a legacy platform, building a design system, or
+              integrating analytics and DAM/Looker into your app, I’m happy to discuss.
+            </p>
+          </div>
+
+          <div class="contact-grid">
+            <div class="card card-muted">
+              <ul class="contact-list">
+                <li>
+                  <span class="label">Email:</span>
+                  <a href="mailto:aravindchowdarykoya7@gmail.com">
+                    aravindchowdarykoya7@gmail.com
+                  </a>
+                </li>
+                <li>
+                  <span class="label">Phone:</span>
+                  <a href="tel:+13165127726">+1 (316) 512-7726</a>
+                </li>
+                <li>
+                  <span class="label">Primary Roles:</span>
+                  Senior Frontend Developer, React / Next.js Engineer,
+                  Frontend Lead / UI Architect
+                </li>
+              </ul>
+              <p class="contact-cta">
+                <strong>Preferred engagement:</strong> C2C contract roles focused on React,
+                Next.js, Vue, or full-stack JavaScript in healthcare, finance, and
+                enterprise product environments.
+              </p>
+            </div>
+
+            <div class="card">
+              <p class="para">
+                If you’d like to review my detailed résumé, domain breakdown, or walk through
+                specific architectures I’ve implemented (Next.js 14 migrations, micro-frontends,
+                Looker integrations, HIPAA/PCI-compliant flows), I’m happy to run through those
+                in a short technical discussion.
+              </p>
+              <p class="para" style="margin-top:0.6rem;">
+                I also mentor junior engineers on frontend best practices, accessibility, and
+                performance, and can help set up standards, code reviews, and CI/CD pipelines
+                for multi-team environments.
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      © <span id="year"></span> Aravind Koya — Senior Frontend Developer. Built with HTML,
+      CSS, and a lot of React/Next/Vue experience.
+    </footer>
+  </div>
+
+  <script>
+    // Mobile nav toggle
+    const toggle = document.getElementById("mobileNavToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    toggle?.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    // Close mobile menu on link click
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+      });
+    });
+
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
